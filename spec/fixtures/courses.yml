@@ -1,0 +1,8 @@
+course_1:
+  title: "test course 1"
+  body: "test description 1"
+  active: true
+course_2:
+  title: "test course 2"
+  body: "test description 2"
+  active: true

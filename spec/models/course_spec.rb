@@ -49,4 +49,23 @@ RSpec.describe Course, type: :model do
       expect(Course.inactive.count).to eq(2)
     end
   end
+
+  context 'associations tests' do
+    fixtures :all
+
+    describe '#title' do
+      it 'should return title' do
+        course = courses(:course_1)
+        expect(course.title).to eq('test course 1')
+      end
+    end
+
+    describe 'relationship' do
+      it 'should have many units' do
+        subject { described_class.new }
+        assoc = described_class.reflect_on_association(:units)
+        expect(assoc.macro).to eq :has_and_belongs_to_many
+      end
+    end
+  end
 end

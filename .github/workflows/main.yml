@@ -7,7 +7,7 @@ jobs:
     name: "rspec"
     runs-on: ubuntu-latest
     container:
-      image: ruby:3.0.2
+      image: ruby:3.1.1
     steps:
     - uses: actions/checkout@v1
     - uses: actions/setup-node@v1
