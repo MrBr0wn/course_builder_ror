@@ -41,7 +41,6 @@ RSpec.describe Course, type: :model do
     end
 
     it "should return all active articles" do
-      puts Course.active.count
       expect(Course.active.count).to eq(3)
     end
 
