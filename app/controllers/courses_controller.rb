@@ -8,6 +8,7 @@ class CoursesController < ApplicationController
 
   # GET /courses/1 or /courses/1.json
   def show
+    @course = Course.find(params[:id])
   end
 
   # GET /courses/new
@@ -65,6 +66,14 @@ class CoursesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def course_params
-      params.fetch(:course, {})
+      params.require(:course).permit(
+        :title,
+        :body,
+        :description_text,
+        :price,
+        :active,
+        :annotation,
+        :volume
+      )
     end
 end

@@ -33,7 +33,7 @@ RSpec.describe Unit, type: :model do
     describe '#name' do
       it 'should return name' do
         unit = units(:unit_1)
-        expect(unit.name).to eq('test unit 1')
+        expect(unit.name).to eq('name unit 1')
       end
     end
 

@@ -1,0 +1,58 @@
+<div id="<%#= dom_id course %>">
+</div>
+
+<div class="container">
+  <div class="block">
+    <div class="content">
+      <div class="columns is-vcentered">
+      
+        <div class="column is-10">
+          <p>
+            <p class="mb-0">
+              <span class="is-size-7">Объем 16 час. 4 модуля</span>
+            </p>
+            
+            <span class="is-size-4">
+              Основная информация о виртуальных машинах
+            </span>
+          </p>
+        </div>
+
+        <div class="column is-2">
+          <p class="has-text-right">
+            7 500 <i class="fas fa-ruble-sign"></i>
+          </p>  
+        </div>
+
+      </div>
+
+      <% @courses.each do |course| %>
+        <div class="columns is-vcentered">
+      
+          <div class="column is-10">
+            <p>
+              <p class="mb-0">
+                <span class="is-size-7">
+                  <%= course.annotation %>
+                    
+                </span>
+              </p>
+              
+              <span class="is-size-4">
+                <%= link_to course.title, course_path(course) %>
+              </span>
+            </p>
+          </div>
+
+          <div class="column is-2">
+            <p class="has-text-right">
+              <%= course.price %> <i class="fas fa-ruble-sign"></i>
+            </p>  
+          </div>
+
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+</div>

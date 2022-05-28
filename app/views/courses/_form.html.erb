@@ -1,40 +1,70 @@
-<%= form_with(model: course) do |form| %>
-  <% if course.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(course.errors.count, "error") %> prohibited this course from being saved:</h2>
+<div class="box">
+  <%= form_with(model: course) do |form| %>
+    <% if course.errors.any? %>
+      <div style="color: red">
+        <h2><%= pluralize(course.errors.count, "error") %> prohibited this course from being saved:</h2>
 
-      <ul>
-        <% course.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
+        <ul>
+          <% course.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+
+    <div class="field">
+      <%= form.label :title, 'Title', class: 'label' %>
+      <div class="control">
+        <%= form.text_field :title, class: 'input', placeholder: 'Input Title' %>
+      </div>
     </div>
+    <div class="field">
+      <%= form.label :body, 'Body', class: 'label' %>
+      <div class="control">
+        <%= form.text_area :body, class: 'textarea', placeholder: 'Input Body' %>
+      </div>
+    </div>
+    <div class="field">
+      <%= form.label :price, 'Price', class: 'label' %>
+      <div class="control">
+        <%= form.text_field :price, class: 'input', placeholder: 'Input Price' %>
+      </div>
+    </div>
+    <div class="field">
+      <%= form.label :annotation, 'Annotation', class: 'label' %>
+      <div class="control">
+        <%= form.text_area :annotation, class: 'textarea', placeholder: 'Input Annotation' %>
+      </div>
+    </div>
+    <div class="field">
+      <%= form.label :description_text, 'Description', class: 'label' %>
+      <div class="control">
+        <%= form.text_area :description_text, class: 'textarea', placeholder: 'Input Description' %>
+      </div>
+    </div>
+    <div class="field">
+      <%= form.label :volume, 'Volume', class: 'label' %>
+      <div class="control">
+        <%= form.text_area :volume, class: 'textarea', placeholder: 'Input Volume' %>
+      </div>
+    </div>
+    <div class="field">
+      <div class="control">
+        <%= form.label :active, 'Active?', class: 'checkbox' %>
+        <%= form.check_box :active %>
+      </div>
+    </div>
+
+
+    <div class="field is-grouped">
+      <div class="control">
+        <%= form.submit 'Create', class: 'button is-link' %>
+      </div>
+      <div class="control">
+        <%= link_to "Cancel", courses_path, class: 'button is-link is-light' %>
+      </div>
+    </div>
+
   <% end %>
-
-  <div>
-    <%= form.label :title, 'title' %>
-    <%= form.text_field :title %>
-    <br>
-    <%= form.label :body, 'body' %>
-    <%= form.text_area :body %>
-    <br>
-    <%= form.label :active, 'active?' %>
-    <%= form.check_box :active %>
-    <br>
-    <%= form.label :price, 'price' %>
-    <%= form.text_field :price %>
-    <br>
-    <%= form.label :annotation, 'annotation' %>
-    <%= form.text_field :annotation %>
-    <br>
-    <%= form.label :description_text, 'description_text' %>
-    <%= form.text_area :description_text %>
-    <br>
-    <%= form.label :volume, 'volume' %>
-    <%= form.text_field :volume %>
-  </div>
-
-  <div>
-    <%= form.submit %>
-  </div>
-<% end %>
+</div>

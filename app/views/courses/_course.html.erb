@@ -2,36 +2,61 @@
 </div>
 
 <div class="container">
-  <div class="block">
-    <div class="content">
-      <div class="columns is-vcentered">
-      
-        <div class="column is-10">
-          <p>
-            <p class="mb-0">
-              <span class="is-size-7">Объем 16 час. 4 модуля</span>
-            </p>
-            
-            <span class="is-size-4">
-              Основная информация о виртуальных машинах
-            </span>
-          </p>
-        </div>
-
-        <div class="column is-2">
-          <p class="has-text-right">
-            7 500 <i class="fas fa-ruble-sign"></i>
-          </p>  
-        </div>
-
-      </div>
-
-
-    </div>
-  </div>
-
-  <div class="block mb-6">
+  <div class="content">
+    <h1 class="title"><%= @course.title %></h1>
     <hr>
-  </div>
+    <h2 class="subtitle">
+      Body
+    </h2>
+    <p>
+      <%= @course.body %>
+    </p>
 
+    <h2 class="subtitle">Description</h2>
+    <p>
+      <%= @course.description_text %>
+    </p>
+
+
+    <h2 class="subtitle">Price</h2>
+    <p>
+      <%= @course.price %> <i class="fas fa-ruble-sign"></i>
+    </p>
+
+
+    <h2 class="subtitle">Volume</h2>
+    <p>
+      <%= @course.volume %>
+    </p>
+
+
+    <h2 class="subtitle">Annotation</h2>
+    <p>
+      <%= @course.annotation %>
+    </p>
+
+    <hr>
+
+
+    <div class="field is-grouped">
+      <div class="control">
+        <%= link_to "Back to courses", courses_path, class: 'button is-link' %>
+      </div>
+      <div class="control">
+        <%= link_to "Edit this course", edit_course_path(@course), class: 'button is-warning' %>
+      </div>
+    </div>
+      <div class="control">
+        <%= link_to "Destroy this course",
+            @course,
+            method: :delete,
+            data: {
+                      turbo_method: :delete,
+                      turbo_confirm: 'Are you shure?'
+                  },
+            class: 'button is-danger' %>
+      </div>
+    </div>
+
+  </div>
 </div>
