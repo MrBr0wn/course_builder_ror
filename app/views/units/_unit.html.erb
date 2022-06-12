@@ -1,0 +1,21 @@
+<section class="section">
+	<div class="container">
+		<h1 class="title">Units</h1>
+
+		<% @units.each do |unit| %>
+			<div class="box">
+				<ol>
+					<p>
+						Название: <%= unit.name %>
+					</p>
+					<p>
+						Описание: <%= unit.body %>
+					</p>
+				</ol>
+				<div class="control">
+			    	<%= link_to "Edit", edit_course_unit_path(@course, unit), class: 'button is-warning' %>
+			    </div>
+			</div>
+		<% end %>
+	</div>
+</section>

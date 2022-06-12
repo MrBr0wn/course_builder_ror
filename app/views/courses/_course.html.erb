@@ -46,16 +46,16 @@
         <%= link_to "Edit this course", edit_course_path(@course), class: 'button is-warning' %>
       </div>
     </div>
-      <div class="control">
-        <%= link_to "Destroy this course",
-            @course,
-            method: :delete,
-            data: {
-                      turbo_method: :delete,
-                      turbo_confirm: 'Are you shure?'
-                  },
-            class: 'button is-danger' %>
-      </div>
+
+    <div class="control">
+      <%= link_to "Destroy this course",
+          @course,
+          method: :delete,
+          data: {
+                    turbo_method: :delete,
+                    turbo_confirm: 'Are you shure?'
+                },
+          class: 'button is-danger' %>
     </div>
 
   </div>

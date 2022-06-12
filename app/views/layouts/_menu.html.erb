@@ -3,7 +3,11 @@
     General
   </p>
   <ul class="menu-list">
-    <li><a>Dashboard</a></li>
+      <% if @courses %>
+        <li>
+          <%= link_to 'Courses', courses_path %>
+        </li>
+      <% end %>
     <li><a>Customers</a></li>
   </ul>
   <p class="menu-label">
