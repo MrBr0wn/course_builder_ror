@@ -65,7 +65,7 @@ RSpec.describe Course, type: :model do
     end
 
     it "should return all active courses" do
-      expect(Course.active.count).to eq(5)
+      expect(Course.active.count).to eq(3)
     end
 
     it "should return all inactive courses" do

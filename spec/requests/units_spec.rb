@@ -75,7 +75,7 @@ RSpec.describe "/units", type: :request do
         }.to change(Unit, :count).by(0)
       end
 
-      it "renders a successful response (i.e. to display the 'new' template)", current: true do
+      it "renders a successful response (i.e. to display the 'new' template)" do
         course = courses(:course_1)
         post course_units_path(course), params: { course_id: course.id, unit: invalid_attributes }
         expect(response).to have_http_status('422')
@@ -111,7 +111,7 @@ RSpec.describe "/units", type: :request do
     end
 
     context "with invalid parameters" do
-      it "renders a successful response (i.e. to display the 'edit' template)", current: true do
+      it "renders a successful response (i.e. to display the 'edit' template)" do
         unit = Unit.create! valid_attributes
         course = courses(:course_1)
         patch course_unit_url(course, unit), params: { course_id: course.id, unit: invalid_attributes }
