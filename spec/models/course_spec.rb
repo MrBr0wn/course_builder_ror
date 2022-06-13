@@ -64,11 +64,11 @@ RSpec.describe Course, type: :model do
       Course.create!(params.merge(active: false))
     end
 
-    it "should return all active articles" do
-      expect(Course.active.count).to eq(3)
+    it "should return all active courses" do
+      expect(Course.active.count).to eq(5)
     end
 
-    it "should return all inactive articles" do
+    it "should return all inactive courses" do
       expect(Course.inactive.count).to eq(2)
     end
   end

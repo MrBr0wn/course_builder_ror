@@ -28,7 +28,8 @@ class UnitsController < ApplicationController
     @unit = @course.units.build(unit_params)
 
     respond_to do |format|
-      if @course.units << @unit
+      # if @course.units << @unit
+      if @unit.save
         format.html { redirect_to edit_course_path(@course), notice: "Unit was successfully created." }
         format.json { render :show, status: :created, location: @unit }
       else

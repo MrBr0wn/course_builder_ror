@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe "courses/edit", type: :view do
+  fixtures :all
+
   before(:each) do
     @course = assign(:course, Course.create!(
       body: "Content of the body",
@@ -9,6 +11,7 @@ RSpec.describe "courses/edit", type: :view do
       description_text: "Description text 1",
       price: 100.00
     ))
+    @units = units(:unit_1, :unit_2)
   end
 
   it "renders the edit course form" do

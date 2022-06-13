@@ -13,37 +13,31 @@ require 'rails_helper'
 # sticking to rails and rspec-rails APIs to keep things simple and stable.
 
 RSpec.describe "/units", type: :request do
-  
+  fixtures :all
+
   # This should return the minimal set of attributes required to create a valid
   # Unit. As you add validations to Unit, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    {
+      name: 'Name 1',
+      body: 'Body 1',
+      position: 1
+    }
   }
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    {
+      name: '',
+      body: '',
+      position: 1
+    }
   }
-
-  describe "GET /index" do
-    it "renders a successful response" do
-      Unit.create! valid_attributes
-      get _units_url
-      expect(response).to be_successful
-    end
-  end
-
-  describe "GET /show" do
-    it "renders a successful response" do
-      unit = Unit.create! valid_attributes
-      get _unit_url(unit)
-      expect(response).to be_successful
-    end
-  end
 
   describe "GET /new" do
     it "renders a successful response" do
-      get new__unit_url
+      course = courses(:course_1)
+      get new_course_unit_url(course)
       expect(response).to be_successful
     end
   end
@@ -51,7 +45,8 @@ RSpec.describe "/units", type: :request do
   describe "GET /edit" do
     it "renders a successful response" do
       unit = Unit.create! valid_attributes
-      get edit__unit_url(unit)
+      course = courses(:course_1)
+      get edit_course_unit_url(course, unit)
       expect(response).to be_successful
     end
   end
@@ -59,27 +54,31 @@ RSpec.describe "/units", type: :request do
   describe "POST /create" do
     context "with valid parameters" do
       it "creates a new Unit" do
+        course = courses(:course_1)
         expect {
-          post _units_url, params: { unit: valid_attributes }
+          post course_units_path(course), params: { course_id: course.id, unit: valid_attributes }
         }.to change(Unit, :count).by(1)
       end
 
-      it "redirects to the created unit" do
-        post _units_url, params: { unit: valid_attributes }
-        expect(response).to redirect_to(_unit_url(Unit.last))
+      it "redirects to the courses" do
+        course = courses(:course_1)
+        post course_units_path(course), params: { course_id: course.id, unit: valid_attributes }
+        expect(response).to redirect_to(edit_course_url(course))
       end
     end
 
     context "with invalid parameters" do
       it "does not create a new Unit" do
+        course = courses(:course_1)
         expect {
-          post _units_url, params: { unit: invalid_attributes }
+          post course_units_path(course), params: { course_id: course.id, unit: invalid_attributes }
         }.to change(Unit, :count).by(0)
       end
 
-      it "renders a successful response (i.e. to display the 'new' template)" do
-        post _units_url, params: { unit: invalid_attributes }
-        expect(response).to be_successful
+      it "renders a successful response (i.e. to display the 'new' template)", current: true do
+        course = courses(:course_1)
+        post course_units_path(course), params: { course_id: course.id, unit: invalid_attributes }
+        expect(response).to have_http_status('422')
       end
     end
   end
@@ -87,45 +86,37 @@ RSpec.describe "/units", type: :request do
   describe "PATCH /update" do
     context "with valid parameters" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        {
+          name: 'Name updated',
+          body: 'Body updated',
+          position: 2
+        }
       }
 
       it "updates the requested unit" do
         unit = Unit.create! valid_attributes
-        patch _unit_url(unit), params: { unit: new_attributes }
+        course = courses(:course_1)
+        patch course_unit_url(course, unit), params: { course_id: course.id, unit: new_attributes }
         unit.reload
-        skip("Add assertions for updated state")
+        expect(unit.name).to eq('Name updated')
       end
 
       it "redirects to the unit" do
         unit = Unit.create! valid_attributes
-        patch _unit_url(unit), params: { unit: new_attributes }
+        course = courses(:course_1)
+        patch course_unit_url(course, unit), params: { course_id: course.id, unit: new_attributes }
         unit.reload
-        expect(response).to redirect_to(unit_url(unit))
+        expect(response).to redirect_to(edit_course_url(course))
       end
     end
 
     context "with invalid parameters" do
-      it "renders a successful response (i.e. to display the 'edit' template)" do
+      it "renders a successful response (i.e. to display the 'edit' template)", current: true do
         unit = Unit.create! valid_attributes
-        patch _unit_url(unit), params: { unit: invalid_attributes }
-        expect(response).to be_successful
+        course = courses(:course_1)
+        patch course_unit_url(course, unit), params: { course_id: course.id, unit: invalid_attributes }
+        expect(response).to have_http_status('422')
       end
-    end
-  end
-
-  describe "DELETE /destroy" do
-    it "destroys the requested unit" do
-      unit = Unit.create! valid_attributes
-      expect {
-        delete _unit_url(unit)
-      }.to change(Unit, :count).by(-1)
-    end
-
-    it "redirects to the units list" do
-      unit = Unit.create! valid_attributes
-      delete _unit_url(unit)
-      expect(response).to redirect_to(_units_url)
     end
   end
 end

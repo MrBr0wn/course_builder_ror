@@ -1,14 +1,16 @@
 require 'rails_helper'
 
 RSpec.describe "units/new", type: :view do
-  before(:each) do
-    assign(:unit, Unit.new())
-  end
+  fixtures :all
+
 
   it "renders new unit form" do
-    render
+    @unit = units(:unit_1)
+    @course = courses(:course_1)
 
-    assert_select "form[action=?][method=?]", _units_path, "post" do
+    render
+    
+    assert_select "form[action=?][method=?]", course_unit_path(@course, @unit), "post" do
     end
   end
 end
